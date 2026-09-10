@@ -8,8 +8,8 @@ const STRINGS = {
     en: "Know instantly which store has the pair you want<br>at the best price with real stock"
   },
   heroSub: {
-    th: "เปรียบเทียบราคาสุทธิจาก Official Store, Shopee Mall, Lazada Mall และ TikTok Shop ในหน้าเดียว",
-    en: "Compare net prices from Official Store, Shopee Mall, Lazada Mall and TikTok Shop in one place"
+    th: "เว็บไซต์สำหรับซื้อรองเท้าผ้าใบราคาถูก เปรียบเทียบราคาสุทธิจาก Official Store, Shopee Mall, Lazada Mall และ TikTok Shop ในหน้าเดียว",
+    en: "The place to buy sneakers at the best price — compare net prices from Official Store, Shopee Mall, Lazada Mall and TikTok Shop in one place"
   },
   searchPlaceholder: {
     th: "ค้นหารุ่นรองเท้า เช่น Air Force 1, Samba...",

@@ -4,6 +4,8 @@ const express = require("express");
 const { connectDB } = require("./db");
 const productsRouter = require("./routes/products");
 const adminRouter = require("./routes/admin");
+const productPageRouter = require("./routes/productPage");
+const sitemapRouter = require("./routes/sitemap");
 const priceRefreshJob = require("./jobs/priceRefreshJob");
 
 const app = express();
@@ -11,6 +13,8 @@ const webRoot = path.join(__dirname, "..", "..");
 
 app.use("/api/products", productsRouter);
 app.use("/api/admin", adminRouter);
+app.use(productPageRouter);
+app.use(sitemapRouter);
 
 // Clean URL for the admin panel — /admin instead of /admin.html.
 // ("/" already serves index.html with no extension in the URL, since

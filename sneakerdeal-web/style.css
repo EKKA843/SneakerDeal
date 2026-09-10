@@ -437,6 +437,37 @@ a { color: inherit; text-decoration: none; }
   padding: 40px 24px 80px;
 }
 
+/* ---------- Product detail page (/shoes/:id) ---------- */
+.breadcrumb {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 14px 24px 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.breadcrumb a { color: var(--muted); text-decoration: underline; }
+.breadcrumb a:hover { color: var(--fg); }
+
+.product-detail-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 24px 80px;
+}
+
+.product-detail { flex-direction: column; }
+
+.product-detail .card-name {
+  font-size: 26px;
+  margin-top: 0;
+}
+
+@media (min-width: 720px) {
+  .product-detail { flex-direction: row; }
+  .product-detail .card-media { flex: 0 0 380px; height: auto; }
+  .product-detail .card-body { flex: 1; }
+}
+
 .footer {
   border-top: 1px solid var(--line);
   padding: 24px;

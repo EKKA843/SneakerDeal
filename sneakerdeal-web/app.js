@@ -246,8 +246,12 @@ function renderCard(product, selectedSize) {
   const card = document.createElement("article");
   card.className = "card";
 
+  const detailUrl = `/shoes/${encodeURIComponent(product.id)}`;
+
   const media = document.createElement("div");
   media.className = "card-media";
+  const mediaLink = document.createElement("a");
+  mediaLink.href = detailUrl;
   const img = document.createElement("img");
   img.src = product.image;
   img.alt = product.name;
@@ -256,14 +260,15 @@ function renderCard(product, selectedSize) {
   const fallback = document.createElement("div");
   fallback.className = "img-fallback";
   fallback.innerHTML = `<span>${I18N.t("noImage")}</span>`;
-  media.appendChild(img);
+  mediaLink.appendChild(img);
+  media.appendChild(mediaLink);
   media.appendChild(fallback);
 
   const body = document.createElement("div");
   body.className = "card-body";
   body.innerHTML = `
     <div class="card-brand">${product.brand} <span class="category-badge">${categoryLabel(product.category)}</span></div>
-    <h3 class="card-name">${product.name}</h3>
+    <h3 class="card-name"><a href="${detailUrl}">${product.name}</a></h3>
     <div class="card-sizes">${I18N.t("allSizesLabel")} ${product.sizes.map(s => "EU " + s).join(", ")}</div>
   `;
 
@@ -354,6 +359,14 @@ async function init() {
     populateCategoryOptions();
     populateSizeOptions();
     populateBrandBanner();
+
+    // Honor a ?category= link (e.g. the breadcrumb on a /shoes/:id page)
+    // so it actually narrows the catalog instead of just landing on "/".
+    const categoryFromUrl = new URLSearchParams(location.search).get("category");
+    if (categoryFromUrl && [...categorySelect.options].some(o => o.value === categoryFromUrl)) {
+      categorySelect.value = categoryFromUrl;
+    }
+
     render();
   } catch (err) {
     console.error("Failed to load products:", err);
