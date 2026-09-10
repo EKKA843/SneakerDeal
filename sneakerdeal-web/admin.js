@@ -392,8 +392,12 @@ function renderOfferForm(product, offer) {
       <label>โค้ด</label>
       <input type="text" class="f-code" value="${offer.code}">
     </div>
+    <div class="field affiliate-url-field">
+      <label>ลิงก์ Affiliate (ปุ่ม "ไปที่ร้าน" — ลูกค้ากดแล้วคุณได้ค่าคอมมิชชัน)</label>
+      <input type="text" class="f-url" value="${offer.url || ""}" placeholder="https://atth.me/go/... หรือลิงก์ affiliate ของร้าน">
+    </div>
     <div class="field source-url-field">
-      <label>ลิงก์หน้าสินค้าจริง (ถ้ามี — ใช้ดึงราคาอัตโนมัติ)</label>
+      <label>ลิงก์หน้าสินค้าจริง (ถ้ามี — ใช้ดึงราคาอัตโนมัติเท่านั้น ไม่ใช่ลิงก์ affiliate)</label>
       <input type="text" class="f-source-url" value="${offer.sourceUrl || ""}" placeholder="https://sasom.co.th/...">
     </div>
     <div class="field sizes"></div>
@@ -410,13 +414,19 @@ function renderOfferForm(product, offer) {
     saveBtn.classList.remove("saved");
     const discount = Number(row.querySelector(".f-discount").value);
     const code = row.querySelector(".f-code").value.trim();
+    const url = row.querySelector(".f-url").value.trim();
     const sourceUrl = row.querySelector(".f-source-url").value.trim();
+
+    if (!url) {
+      saveBtn.textContent = "กรอกลิงก์ Affiliate ก่อนบันทึก";
+      return;
+    }
 
     try {
       await apiFetch(`/api/admin/products/${product.id}/offers/${encodeURIComponent(offer.store)}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ discount, code, sourceUrl, ...pricing.read() })
+        body: JSON.stringify({ discount, code, url, sourceUrl, ...pricing.read() })
       });
       saveBtn.textContent = "บันทึกแล้ว";
       saveBtn.classList.add("saved");

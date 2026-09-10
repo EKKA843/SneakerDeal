@@ -39,7 +39,7 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto;
   padding: 14px 24px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
 }
 
@@ -68,7 +68,7 @@ a { color: inherit; text-decoration: none; }
 .topbar-actions {
   display: flex;
   gap: 8px;
-  align-self: center;
+  margin-left: auto;
 }
 
 .icon-btn {
@@ -159,9 +159,23 @@ a { color: inherit; text-decoration: none; }
   padding: 4px 2px 12px;
 }
 
+@media (max-width: 640px) {
+  .brand-banner {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    gap: 10px;
+  }
+  .brand-banner .brand-card {
+    flex: 0 0 84px;
+    width: 84px;
+    scroll-snap-align: start;
+  }
+}
+
 .brand-card {
   width: 100%;
-  height: 92px;
+  height: 76px;
   border-radius: 14px;
   border: none;
   background-color: var(--card-bg);
@@ -195,11 +209,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 .brand-card.logo-missing .brand-logo-fallback { display: block; }
-
-.brand-card-count {
-  font-size: 10.5px;
-  color: var(--muted);
-}
 
 .brand-card-all {
   justify-content: center;

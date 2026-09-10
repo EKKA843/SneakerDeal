@@ -3,7 +3,6 @@
 // (input placeholder). Dynamic strings built in app.js call I18N.t(key,
 // vars) directly instead of going through the DOM.
 const STRINGS = {
-  tagline: { th: "เช็กราคาจบในที่เดียว", en: "Compare prices in one place" },
   heroTitle: {
     th: "รู้ทันทีว่าคู่ที่คุณอยากได้<br>ซื้อที่ไหนถูกสุด และไซส์ไหนมีของจริง",
     en: "Know instantly which store has the pair you want<br>at the best price with real stock"
@@ -19,7 +18,6 @@ const STRINGS = {
   allCategories: { th: "ทุกหมวดหมู่", en: "All categories" },
   allSizes: { th: "ทุกไซส์", en: "All sizes" },
   allBrands: { th: "ทั้งหมด", en: "All" },
-  pairsCount: { th: "{n} คู่", en: "{n} pairs" },
   emptyState: {
     th: "ไม่พบสินค้าที่ตรงกับเงื่อนไข ลองเปลี่ยนไซส์หรือคำค้นหาดูนะ",
     en: "No matching products. Try a different size or search term."

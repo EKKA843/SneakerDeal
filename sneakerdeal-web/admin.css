@@ -576,6 +576,7 @@
   margin-top: -2px;
 }
 
+.affiliate-url-field { flex-basis: 100%; order: 6; }
 .source-url-field { flex-basis: 100%; order: 7; }
 
 .add-offer-form {

@@ -146,14 +146,13 @@ function populateBrandBanner() {
   };
   brandBannerEl.appendChild(allCard);
 
-  brands.forEach(([brand, count]) => {
+  brands.forEach(([brand]) => {
     const card = document.createElement("button");
     card.type = "button";
     card.className = "brand-card" + (selectedBrand === brand ? " active" : "");
     card.innerHTML = `
       <img class="brand-logo" src="${brandLogoUrl(brand)}" alt="${brand}" loading="lazy">
       <span class="brand-logo-fallback">${brand}</span>
-      <span class="brand-card-count">${I18N.t("pairsCount", { n: count })}</span>
     `;
     card.querySelector(".brand-logo").onerror = function () {
       this.hidden = true;

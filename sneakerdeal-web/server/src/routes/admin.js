@@ -171,7 +171,7 @@ router.delete("/products/:id", async (req, res) => {
 // store name since that's unique within a product.
 router.patch("/products/:id/offers/:store", async (req, res) => {
   const { id, store } = req.params;
-  const { code, discount, sourceUrl } = req.body;
+  const { code, discount, sourceUrl, url } = req.body;
 
   const product = await Product.findOne({ id });
   if (!product) return res.status(404).json({ error: "Product not found" });
@@ -187,6 +187,12 @@ router.patch("/products/:id/offers/:store", async (req, res) => {
     offer.priceMode = pricing.priceMode;
     offer.sizePrices = pricing.sizePrices;
     offer.priceRange = pricing.priceRange;
+  }
+  if (url != null) {
+    if (!String(url).trim()) {
+      return res.status(400).json({ error: "url cannot be blank — it's the buy-button link" });
+    }
+    offer.url = String(url).trim();
   }
   if (code != null) offer.code = String(code);
   if (discount != null) offer.discount = Number(discount);
