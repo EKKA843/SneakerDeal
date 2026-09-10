@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: sneakerdeal
+    runtime: node
+    plan: free
+    rootDir: sneakerdeal-web/server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: ADMIN_TOKEN
+        sync: false
+      - key: PRICE_REFRESH_CRON
+        value: "*/30 * * * *"
