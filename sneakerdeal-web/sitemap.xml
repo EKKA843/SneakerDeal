@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Replace REPLACE_WITH_REAL_DOMAIN below once deployed (e.g. after
+     setting up Render), then add a "Sitemap:" line pointing here to
+     robots.txt. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://REPLACE_WITH_REAL_DOMAIN/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
