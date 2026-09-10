@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SneakerDeal — เช็กราคาจบในที่เดียว</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M6 30.5c0-2 1.2-3.6 3-4.4l7.6-3.4c1.3-.6 2.3-1.6 2.9-2.9l1.6-3.6c.7-1.6 2.3-2.6 4-2.6.9 0 1.8.3 2.5.9l6.6 5.1c1 .8 2.3 1.2 3.6 1.2H40c1.1 0 2 .9 2 2v3.2c0 1.1-.8 2-1.9 2.2l-4.6.8c-.7.1-1.3.5-1.7 1.1-.6.9-1.6 1.4-2.7 1.4H10c-2.2 0-4-1.8-4-4z"
+              stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M17 26.5h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="34.5" cy="30.5" r="1.6" fill="currentColor"/>
+      </svg>
+      SneakerDeal
+    </div>
+    <div class="tagline" data-i18n="tagline">เช็กราคาจบในที่เดียว</div>
+    <div class="topbar-actions">
+      <button id="themeToggleBtn" class="icon-btn" type="button"></button>
+      <button id="langToggleBtn" class="icon-btn" type="button"></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 data-i18n="heroTitle">รู้ทันทีว่าคู่ที่คุณอยากได้<br>ซื้อที่ไหนถูกสุด และไซส์ไหนมีของจริง</h1>
+  <p class="hero-sub" data-i18n="heroSub">เปรียบเทียบราคาสุทธิจาก Official Store, Shopee Mall, Lazada Mall และ TikTok Shop ในหน้าเดียว</p>
+
+  <div class="controls">
+    <input id="searchInput" type="text" data-i18n-placeholder="searchPlaceholder" placeholder="ค้นหารุ่นรองเท้า เช่น Air Force 1, Samba..." autocomplete="off">
+    <select id="categorySelect">
+      <option value="" data-i18n="allCategories">ทุกหมวดหมู่</option>
+    </select>
+    <select id="sizeSelect">
+      <option value="" data-i18n="allSizes">ทุกไซส์</option>
+    </select>
+  </div>
+</section>
+
+<section class="brand-banner-wrap">
+  <div id="brandBanner" class="brand-banner"></div>
+</section>
+
+<main class="catalog" id="catalog">
+  <!-- product cards injected by app.js -->
+</main>
+
+<p class="empty-state" id="emptyState" data-i18n="emptyState" hidden>ไม่พบสินค้าที่ตรงกับเงื่อนไข ลองเปลี่ยนไซส์หรือคำค้นหาดูนะ</p>
+<p class="empty-state" id="errorState" data-i18n="errorState" hidden>โหลดข้อมูลสินค้าไม่สำเร็จ กรุณาลองใหม่อีกครั้ง</p>
+
+<footer class="footer">
+  <p data-i18n="footer">ราคาและสต็อกอัปเดตโดยแอดมิน — คลิกปุ่ม "ไปที่ร้าน" เพื่อเปิดหน้าร้านค้าจริงของแต่ละแพลตฟอร์ม</p>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="theme.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

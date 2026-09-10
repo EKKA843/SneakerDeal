@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SneakerDeal Admin — จัดการสินค้า</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M6 30.5c0-2 1.2-3.6 3-4.4l7.6-3.4c1.3-.6 2.3-1.6 2.9-2.9l1.6-3.6c.7-1.6 2.3-2.6 4-2.6.9 0 1.8.3 2.5.9l6.6 5.1c1 .8 2.3 1.2 3.6 1.2H40c1.1 0 2 .9 2 2v3.2c0 1.1-.8 2-1.9 2.2l-4.6.8c-.7.1-1.3.5-1.7 1.1-.6.9-1.6 1.4-2.7 1.4H10c-2.2 0-4-1.8-4-4z"
+              stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M17 26.5h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="34.5" cy="30.5" r="1.6" fill="currentColor"/>
+      </svg>
+      SneakerDeal
+    </div>
+    <div class="tagline">Admin — เพิ่ม/แก้ไขสินค้าและราคาด้วยตนเอง</div>
+  </div>
+</header>
+
+<main class="admin-wrap">
+  <section id="tokenGate" class="token-gate">
+    <p>ระบบนี้ใช้จัดการสินค้าและราคาทั้งหมดด้วยตนเอง ไม่ได้ดึงจาก API ภายนอกใดๆ</p>
+    <label for="tokenInput">Admin token</label>
+    <div class="token-row">
+      <input id="tokenInput" type="password" placeholder="วาง ADMIN_TOKEN จากไฟล์ .env">
+      <button id="tokenSaveBtn" class="buy-btn">เข้าสู่ระบบ</button>
+    </div>
+    <p id="tokenError" class="admin-error" hidden>Token ไม่ถูกต้อง</p>
+  </section>
+
+  <section id="adminApp" hidden>
+    <section class="add-product">
+      <h2>เพิ่มสินค้าใหม่</h2>
+      <div class="form-grid">
+        <div class="field">
+          <label for="npName">ชื่อรุ่น</label>
+          <input id="npName" type="text" placeholder="เช่น Nike Air Max 90">
+        </div>
+        <div class="field">
+          <label for="npBrand">แบรนด์</label>
+          <input id="npBrand" type="text" placeholder="เช่น Nike">
+        </div>
+        <div class="field">
+          <label for="npCategory">หมวดหมู่</label>
+          <select id="npCategory"></select>
+        </div>
+        <div class="field field-wide">
+          <label for="npImage">ลิงก์รูปภาพ</label>
+          <input id="npImage" type="text" placeholder="https://...">
+        </div>
+        <div class="field field-wide">
+          <label>ไซส์ทั้งหมดที่มีขาย (คลิกเลือกได้หลายไซส์)</label>
+          <div id="npSizes" class="size-picker"></div>
+        </div>
+      </div>
+
+      <h3>ร้านค้า / ราคา</h3>
+      <div id="offerRows" class="offer-rows"></div>
+      <button id="addOfferRowBtn" type="button" class="secondary-btn">+ เพิ่มร้านค้า</button>
+
+      <div class="add-product-actions">
+        <button id="createProductBtn" class="buy-btn">เพิ่มสินค้า</button>
+        <span id="createProductMsg" class="create-msg"></span>
+      </div>
+    </section>
+
+    <div class="list-header">
+      <h2 class="list-heading">สินค้าทั้งหมด</h2>
+      <input id="adminSearch" type="text" class="admin-search" placeholder="ค้นหาชื่อรุ่น, แบรนด์ หรือร้านค้า...">
+    </div>
+    <p id="adminListEmpty" class="admin-list-empty" hidden>ไม่พบสินค้าที่ตรงกับคำค้นหา</p>
+    <section id="adminList" class="admin-list"></section>
+  </section>
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>
