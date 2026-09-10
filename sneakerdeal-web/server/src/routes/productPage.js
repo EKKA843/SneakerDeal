@@ -19,6 +19,14 @@ const CATEGORY_LABELS = {
   sandal: "รองเท้าแตะ/รัดส้น"
 };
 
+const PLATFORM_LABELS = {
+  official: "Official Store",
+  shopee: "Shopee Mall",
+  lazada: "Lazada Mall",
+  tiktok: "TikTok Shop",
+  other: "ร้านค้าอื่นๆ"
+};
+
 function formatBaht(n) {
   return "฿" + Math.round(n).toLocaleString("th-TH");
 }
@@ -55,10 +63,16 @@ function renderOfferRow(offer, isBest) {
     note = `เริ่มต้นไซส์ EU ${cheapest.size} • ${discountLabel}`;
   }
 
+  const platform = PLATFORM_LABELS[offer.type] || PLATFORM_LABELS.other;
+  const sellerHtml = offer.store && offer.store !== platform
+    ? `<div class="offer-seller">${escapeHtml(offer.store)}</div>`
+    : "";
+
   return `
     <div class="offer${isBest ? " best" : ""}">
       <div class="offer-store">
-        <div class="store-name"><span class="store-badge ${escapeHtml(offer.type)}">${escapeHtml(offer.store)}</span></div>
+        <div class="store-name"><span class="store-badge ${escapeHtml(offer.type)}">${escapeHtml(platform)}</span></div>
+        ${sellerHtml}
         <div class="offer-note${inStock ? "" : " oos"}">${note}</div>
       </div>
       <div class="offer-price">

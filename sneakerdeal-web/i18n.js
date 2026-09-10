@@ -16,6 +16,11 @@ const STRINGS = {
     en: "Search for a shoe, e.g. Air Force 1, Samba..."
   },
   allCategories: { th: "ทุกหมวดหมู่", en: "All categories" },
+  platformOfficial: { th: "Official Store", en: "Official Store" },
+  platformShopee: { th: "Shopee Mall", en: "Shopee Mall" },
+  platformLazada: { th: "Lazada Mall", en: "Lazada Mall" },
+  platformTiktok: { th: "TikTok Shop", en: "TikTok Shop" },
+  platformOther: { th: "ร้านค้าอื่นๆ", en: "Other Store" },
   allSizes: { th: "ทุกไซส์", en: "All sizes" },
   allBrands: { th: "ทั้งหมด", en: "All" },
   emptyState: {

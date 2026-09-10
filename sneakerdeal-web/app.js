@@ -18,6 +18,15 @@ const categoryLabel = value => {
   return c ? I18N.t(c.key) : value;
 };
 
+const PLATFORM_KEYS = {
+  official: "platformOfficial",
+  shopee: "platformShopee",
+  lazada: "platformLazada",
+  tiktok: "platformTiktok",
+  other: "platformOther"
+};
+const platformLabel = type => I18N.t(PLATFORM_KEYS[type] || "platformOther");
+
 // Domains used to fetch each brand's real logo via Google's public favicon
 // service (https://www.google.com/s2/favicons?domain=<domain> — no key or
 // signup needed). Clearbit's free Logo API, the more obvious choice, was
@@ -211,12 +220,18 @@ function renderOfferRow(offer, isBest, selectedSize) {
       : "";
   }
 
+  const platform = platformLabel(offer.type);
+  const sellerHtml = offer.store && offer.store !== platform
+    ? `<div class="offer-seller">${offer.store}</div>`
+    : "";
+
   row.className = "offer" + (isBest ? " best" : "");
   row.innerHTML = `
     <div class="offer-store">
       <div class="store-name">
-        <span class="store-badge ${offer.type}">${offer.store}</span>
+        <span class="store-badge ${offer.type}">${platform}</span>
       </div>
+      ${sellerHtml}
       <div class="offer-note ${inStock ? "" : "oos"}">${note}</div>
       <div class="offer-updated">${formatRelativeTime(offer.lastUpdated)}</div>
     </div>

@@ -382,6 +382,12 @@ a { color: inherit; text-decoration: none; }
 .store-badge.lazada { background: #0f146d; }
 .store-badge.tiktok { background: #111; }
 
+.offer-seller {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
 .offer-note {
   font-size: 11.5px;
   color: var(--muted);
