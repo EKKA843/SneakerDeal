@@ -171,7 +171,7 @@ router.delete("/products/:id", async (req, res) => {
 // store name since that's unique within a product.
 router.patch("/products/:id/offers/:store", async (req, res) => {
   const { id, store } = req.params;
-  const { code, discount, sourceUrl, url } = req.body;
+  const { code, discount, sourceUrl, url, store: newStore, type } = req.body;
 
   const product = await Product.findOne({ id });
   if (!product) return res.status(404).json({ error: "Product not found" });
@@ -188,6 +188,17 @@ router.patch("/products/:id/offers/:store", async (req, res) => {
     offer.sizePrices = pricing.sizePrices;
     offer.priceRange = pricing.priceRange;
   }
+  if (newStore != null) {
+    const trimmed = String(newStore).trim();
+    if (!trimmed) {
+      return res.status(400).json({ error: "store name cannot be blank" });
+    }
+    if (trimmed !== offer.store && product.offers.some(o => o.store === trimmed)) {
+      return res.status(409).json({ error: "This product already has an offer with that store name" });
+    }
+    offer.store = trimmed;
+  }
+  if (type != null) offer.type = String(type);
   if (url != null) {
     if (!String(url).trim()) {
       return res.status(400).json({ error: "url cannot be blank — it's the buy-button link" });

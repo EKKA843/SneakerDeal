@@ -383,7 +383,16 @@ function renderOfferForm(product, offer) {
   row.className = "admin-offer";
 
   row.innerHTML = `
-    <div class="field store"><div class="store-label">${offer.store}</div></div>
+    <div class="field store">
+      <label>ชื่อร้าน</label>
+      <input type="text" class="f-store" value="${offer.store}">
+    </div>
+    <div class="field type-field">
+      <label>Platform</label>
+      <select class="f-type">
+        ${STORE_TYPES.map(t => `<option value="${t}"${t === offer.type ? " selected" : ""}>${t}</option>`).join("")}
+      </select>
+    </div>
     <div class="field discount">
       <label>ส่วนลด (0-1)</label>
       <input type="number" class="f-discount" value="${offer.discount}" min="0" max="1" step="0.01">
@@ -412,11 +421,17 @@ function renderOfferForm(product, offer) {
   saveBtn.onclick = async () => {
     saveBtn.textContent = "กำลังบันทึก...";
     saveBtn.classList.remove("saved");
+    const store = row.querySelector(".f-store").value.trim();
+    const type = row.querySelector(".f-type").value;
     const discount = Number(row.querySelector(".f-discount").value);
     const code = row.querySelector(".f-code").value.trim();
     const url = row.querySelector(".f-url").value.trim();
     const sourceUrl = row.querySelector(".f-source-url").value.trim();
 
+    if (!store) {
+      saveBtn.textContent = "กรอกชื่อร้านก่อนบันทึก";
+      return;
+    }
     if (!url) {
       saveBtn.textContent = "กรอกลิงก์ Affiliate ก่อนบันทึก";
       return;
@@ -426,10 +441,11 @@ function renderOfferForm(product, offer) {
       await apiFetch(`/api/admin/products/${product.id}/offers/${encodeURIComponent(offer.store)}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ discount, code, url, sourceUrl, ...pricing.read() })
+        body: JSON.stringify({ store, type, discount, code, url, sourceUrl, ...pricing.read() })
       });
       saveBtn.textContent = "บันทึกแล้ว";
       saveBtn.classList.add("saved");
+      if (store !== offer.store) await refreshAdminList();
     } catch (err) {
       saveBtn.textContent = "บันทึกไม่สำเร็จ ลองใหม่";
       console.error(err);

@@ -512,6 +512,7 @@
 
 .admin-offer .field { display: flex; flex-direction: column; }
 .admin-offer .field.store { min-width: 130px; }
+.admin-offer .field.type-field { min-width: 110px; flex: 0 0 110px; }
 .admin-offer .field.discount { width: 90px; }
 .admin-offer .field.code { width: 120px; }
 .admin-offer .field.sizes { flex-basis: 100%; order: 10; margin-top: 4px; }
@@ -530,12 +531,6 @@
   padding: 0 8px;
   font-size: 12.5px;
   border-radius: 8px;
-}
-
-.admin-offer .store-label {
-  font-weight: 600;
-  font-size: 13px;
-  padding: 7px 0;
 }
 
 .save-btn {
